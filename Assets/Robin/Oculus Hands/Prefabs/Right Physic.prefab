@@ -2227,6 +2227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd38fa1de8a66844b930181bf890259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: {fileID: 0}
   grip:
     m_UseReference: 1
     m_Action:
@@ -2240,7 +2241,19 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  move: {fileID: 0}
+  pinch:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pinch
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b6ffc66a-8796-4670-9815-b4ddec76b537
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   target: {fileID: 0}
   Hand: 1
 --- !u!135 &5915582092785582155

@@ -5,20 +5,18 @@ using UnityEngine.InputSystem;
 
 public class HandPos : MonoBehaviour
 {
+    public Movement move;
+    Rigidbody rb;
+
     public InputActionProperty grip;
     float gripValue;
-
-    public Movement move;
+    public InputActionProperty pinch;
+    float pinchValue;
 
     public Transform target;
-    Rigidbody rb;
-    
+   
     public enum Side { Left, Right}
     public Side Hand;
-
-    bool moveLeft, moveRight;
-    float velo;
-    Vector3 prevPos;
 
     void Start()
     {
@@ -28,7 +26,8 @@ public class HandPos : MonoBehaviour
     void Update()
     {
         gripValue = grip.action.ReadValue<float>();
-        MoveHand();
+        pinchValue = pinch.action.ReadValue<float>();
+        InputHand();
     }
 
     void FixedUpdate()
@@ -51,80 +50,50 @@ public class HandPos : MonoBehaviour
         rb.angularVelocity = eulerRot / Time.fixedDeltaTime;
     }
 
-    void MoveHand()
+    void InputHand()
     {
-        if(moveLeft)
-        {
-            if(gripValue == 1)
-            {
-                velo = (transform.position - prevPos).magnitude / Time.deltaTime;
-                prevPos = transform.position;
-            }
-            else
-            {
-                velo = 0;
-            }
-        }
-        else if(moveRight)
-        {
-            if(gripValue == 1)
-            {
-                velo = (transform.position - prevPos).magnitude / Time.deltaTime;
-                prevPos = transform.position;
-            }
-            else
-            {
-                velo = 0;
-            }
-        }
-
         if(Hand == Side.Left)
         {
-            move.velocityLeft = velo;
+            if(gripValue == 1)
+            {
+                move.acL = 1;
+            }
+            else
+            {
+                move.acL = 0; 
+            }
+
+            if(pinchValue == 1)
+            {
+                move.brL = 1;
+            }
+            else
+            {
+                move.brL = 0;
+            }
+
+            move.dotL = move.Dotting(transform);
         }
         else if(Hand == Side.Right)
         {
-            move.velocityRight = velo;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(Hand == Side.Left)
-        {
-            if(other.CompareTag("Left"))
+            if(gripValue == 1)
             {
-                moveLeft = true;
+                move.acR = 1;
             }
-        }
-
-        if(Hand == Side.Right)
-        {
-            if(other.CompareTag("Right"))
+            else
             {
-                moveRight = true;
+                move.acR = 0;
             }
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(Hand == Side.Left)
-        {
-            if(other.CompareTag("Left"))
+            if(pinchValue == 1)
             {
-                moveLeft = false;
-                velo = 0;
+                move.brR = 1;
             }
-        }
-
-        if(Hand == Side.Right)
-        {
-            if(other.CompareTag("Right"))
+            else
             {
-                moveRight = false;
-                velo = 0;
+                move.brR = 0;
             }
+            move.dotR = move.Dotting(transform);
         }
     }
 }

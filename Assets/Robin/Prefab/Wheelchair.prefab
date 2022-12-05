@@ -1372,27 +1372,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67904f9d624c9c644a1896f6895bf043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 0}
-  cam: {fileID: 0}
-  camOffset: {fileID: 0}
+  origin: {fileID: 3928015331316251101}
+  cam: {fileID: 3928015330382604360}
+  camOffset: {fileID: 3928015330486841013}
   dotPos: {fileID: 485242282875306571}
   colliderLeft: {fileID: 3928015329817972798}
   colliderRight: {fileID: 3928015329817972797}
   wheelLeft: {fileID: 3928015329730013549}
   wheelRight: {fileID: 3928015329790662154}
   currentSpeed: 0
-  maxSpeed: 15
+  maxSpeed: 10
   dotL: 0
   dotR: 0
-  acL: 0
-  acR: 0
-  brL: 0
-  brR: 0
-  tnL: 0
-  tnR: 0
+  heightL: 0
+  heightR: 0
+  grL: 0
+  grR: 0
+  piL: 0
+  piR: 0
+  downForce: 1000
   acceleration: 500
-  breakingForce: 2000
-  maxTurnAngle: 0
+  breakingForce: 20000
 --- !u!65 &3928015331597505305
 BoxCollider:
   m_ObjectHideFlags: 0

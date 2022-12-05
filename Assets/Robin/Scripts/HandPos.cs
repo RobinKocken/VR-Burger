@@ -56,44 +56,45 @@ public class HandPos : MonoBehaviour
         {
             if(gripValue == 1)
             {
-                move.acL = 1;
+                move.grL = 1;
             }
             else
             {
-                move.acL = 0; 
+                move.grL = 0; 
             }
 
             if(pinchValue == 1)
             {
-                move.brL = 1;
+                move.piL = 1;
             }
             else
             {
-                move.brL = 0;
+                move.piL = 0;
             }
 
-            move.dotL = move.Dotting(transform);
+            (move.dotL, move.heightL) = move.Dotting(transform);
         }
         else if(Hand == Side.Right)
         {
             if(gripValue == 1)
             {
-                move.acR = 1;
+                move.grR = 1;
             }
             else
             {
-                move.acR = 0;
+                move.grR = 0;
             }
 
             if(pinchValue == 1)
             {
-                move.brR = 1;
+                move.piR = 1;
             }
             else
             {
-                move.brR = 0;
+                move.piR = 0;
             }
-            move.dotR = move.Dotting(transform);
+
+            (move.dotR, move.heightR) = move.Dotting(transform);
         }
     }
 }

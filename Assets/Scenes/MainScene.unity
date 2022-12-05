@@ -7352,21 +7352,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheelchair
       objectReference: {fileID: 0}
-    - target: {fileID: 3928015331597505306, guid: 662c8dfe06872be4a944df1299efd3bc,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928015331597505306, guid: 662c8dfe06872be4a944df1299efd3bc,
-        type: 3}
-      propertyPath: origin
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928015331597505306, guid: 662c8dfe06872be4a944df1299efd3bc,
-        type: 3}
-      propertyPath: camOffset
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662c8dfe06872be4a944df1299efd3bc, type: 3}
 --- !u!1001 &4511638028591737711
@@ -7468,7 +7453,7 @@ PrefabInstance:
     - target: {fileID: 4783299905827018603, guid: 1cd4b8b90b164ae4db07ed04ce5bf254,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.173
+      value: 0.825
       objectReference: {fileID: 0}
     - target: {fileID: 4783299905827018603, guid: 1cd4b8b90b164ae4db07ed04ce5bf254,
         type: 3}
@@ -7547,7 +7532,7 @@ PrefabInstance:
     - target: {fileID: 5915582092785582158, guid: 58cb29d8b3ff0c44689212b767fe3756,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.173
+      value: 0.825
       objectReference: {fileID: 0}
     - target: {fileID: 5915582092785582158, guid: 58cb29d8b3ff0c44689212b767fe3756,
         type: 3}

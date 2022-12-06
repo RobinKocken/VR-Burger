@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848398989061301041}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000023692844}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -3.6690016, y: -1.1009114, z: 5.2427344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1501271280061466229}
   - component: {fileID: 6483652318686293126}
   - component: {fileID: 5502830789195119149}
+  - component: {fileID: 244720240}
   m_Layer: 0
   m_Name: Grill
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &244720240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869201802073323684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2472804, y: 0.96497506, z: 0.82216924}
+  m_Center: {x: 0.00000002980233, y: 0.48248753, z: 0.052913096}
 --- !u!1 &5238862946105124573
 GameObject:
   m_ObjectHideFlags: 0

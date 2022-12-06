@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4628759998222879059}
   - component: {fileID: 8616357114615678710}
   - component: {fileID: 5798248649360355900}
+  - component: {fileID: 3901440787226138148}
   m_Layer: 0
   m_Name: Balie
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5437947141797221353}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000002324581}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -2.4895802, y: -1.1009114, z: -0.05950594}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3901440787226138148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437947141797221353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 0.73671603, z: 0.6086948}
+  m_Center: {x: 0, y: 0.36835802, z: -0.06794167}

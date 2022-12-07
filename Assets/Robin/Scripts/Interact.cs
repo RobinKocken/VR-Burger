@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
+    public GameObject handPhysic;
+
     public InputActionProperty grip;
 
     public float disToPickUp;
@@ -12,7 +14,7 @@ public class Interact : MonoBehaviour
 
     bool handClosed;
     float value;
-    Rigidbody target;
+    public Rigidbody target;
 
     float speed;
     Vector3 vel;
@@ -30,10 +32,7 @@ public class Interact : MonoBehaviour
         vel = (transform.position - prev) * Time.deltaTime;
         prev = transform.position;
         speed = vel.magnitude;
-    }
 
-    void FixedUpdate()
-    {
         if(value == 1)
         {
             handClosed = true;
@@ -42,14 +41,19 @@ public class Interact : MonoBehaviour
         {
             handClosed = false;
         }
+    }
 
+    void FixedUpdate()
+    {
         if(!handClosed)
         {
+            handPhysic.SetActive(true);
             Collider[] colliders = Physics.OverlapSphere(transform.position, disToPickUp, layer);
 
             if(colliders.Length > 0)
             {
                 target = colliders[0].transform.root.GetComponent<Rigidbody>();
+                Debug.Log(colliders[0].transform.name);
             }
             else
             {
@@ -60,6 +64,8 @@ public class Interact : MonoBehaviour
         {
             if(target)
             {
+                handPhysic.SetActive(false);
+
                 target.velocity = (transform.position - target.transform.position) / Time.fixedDeltaTime;
 
                 target.maxAngularVelocity = 20;

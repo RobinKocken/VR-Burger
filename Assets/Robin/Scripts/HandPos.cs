@@ -15,7 +15,7 @@ public class HandPos : MonoBehaviour
 
     public Transform target;
    
-    public enum Side { Left, Right}
+    public enum Side {Left, Right}
     public Side Hand;
 
     void Start()

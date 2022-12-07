@@ -2190,6 +2190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4783299905827018603}
   - component: {fileID: 4783299905827018601}
+  - component: {fileID: 6887783168784165287}
   - component: {fileID: 4783299905827018600}
   - component: {fileID: 4783299905827018602}
   m_Layer: 8
@@ -2256,6 +2257,37 @@ MonoBehaviour:
       type: 3}
   target: {fileID: 0}
   Hand: 0
+--- !u!114 &6887783168784165287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783299905827018604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5482add2c9db8dd4aa7f4a82882320e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handPhysic: {fileID: 3186171979145302397}
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e9a3c309-6b83-49e9-85bf-246ce434c46a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  disToPickUp: 0.1
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  target: {fileID: 0}
 --- !u!135 &4783299905827018600
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2265,7 +2297,7 @@ SphereCollider:
   m_GameObject: {fileID: 4783299905827018604}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}

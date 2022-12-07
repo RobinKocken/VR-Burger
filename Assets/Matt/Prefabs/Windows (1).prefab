@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4787377728611543946
+--- !u!1 &4031446495500127045
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5277090670475063600}
-  - component: {fileID: 9120956463643016853}
-  - component: {fileID: 6444882916637821535}
+  - component: {fileID: 4375602828752130559}
+  - component: {fileID: 798993125710765658}
+  - component: {fileID: 3238773447025289872}
   m_Layer: 0
-  m_Name: Windows
+  m_Name: Windows (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5277090670475063600
+--- !u!4 &4375602828752130559
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Matt/Prefabs/Wall KitchenBottemLeft.prefab
-  m_GameObject: {fileID: 2684122188173185743}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.8539863, y: 0, z: 3.582504}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-=======
-  m_GameObject: {fileID: 4787377728611543946}
+  m_GameObject: {fileID: 4031446495500127045}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8655832, y: 0.9999997, z: -5.9290524}
+  m_LocalPosition: {x: 3.7969875, y: 0.9999997, z: -7.537215}
   m_LocalScale: {x: 1, y: 1, z: 1.0000008}
->>>>>>> Stashed changes:Assets/Matt/Prefabs/Windows.prefab
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9120956463643016853
+--- !u!33 &798993125710765658
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4787377728611543946}
+  m_GameObject: {fileID: 4031446495500127045}
   m_Mesh: {fileID: -4270572096125141525, guid: 076ea7f87352d0c4da80f2149e61ed82, type: 3}
---- !u!23 &6444882916637821535
+--- !u!23 &3238773447025289872
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4787377728611543946}
+  m_GameObject: {fileID: 4031446495500127045}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

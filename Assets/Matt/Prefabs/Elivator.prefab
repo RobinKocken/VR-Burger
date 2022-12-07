@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7896035344624802385
+--- !u!1 &373200248824435863
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,59 +8,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-  - component: {fileID: 7548611781367966233}
-  - component: {fileID: 6876387497153865148}
-  - component: {fileID: 8685511526068244854}
-  - component: {fileID: 8425747120749974410}
+<<<<<<< Updated upstream:Assets/Matt/Prefabs/Wall KitchenBottem.prefab
+  - component: {fileID: 2922126077849411796}
+  - component: {fileID: 2243533388060405617}
+  - component: {fileID: 4091052913844116411}
+  - component: {fileID: 366996974886135575}
 =======
-  - component: {fileID: 7412796219253719275}
-  - component: {fileID: 5868279882902212430}
-  - component: {fileID: 8544637185442577284}
->>>>>>> Stashed changes
+  - component: {fileID: 1037533303000059437}
+  - component: {fileID: 4164093114039648648}
+  - component: {fileID: 2174433597453972802}
+>>>>>>> Stashed changes:Assets/Matt/Prefabs/Elivator.prefab
   m_Layer: 0
-  m_Name: TopWall
+  m_Name: Elivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7412796219253719275
+--- !u!4 &1037533303000059437
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 7172508828472471715}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.54491806, y: 0.21328723, z: 3.1154337}
-=======
-  m_GameObject: {fileID: 7896035344624802385}
-  m_LocalRotation: {x: -0, y: -0.70710534, z: -0, w: 0.7071083}
-  m_LocalPosition: {x: -3.6630602, y: 0.21328723, z: -2.1147}
->>>>>>> Stashed changes
+<<<<<<< Updated upstream:Assets/Matt/Prefabs/Wall KitchenBottem.prefab
+  m_GameObject: {fileID: 2577935316630305390}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_GameObject: {fileID: 373200248824435863}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071078}
+  m_LocalPosition: {x: 6.855543, y: 0.9999999, z: -4.4786515}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000008}
+>>>>>>> Stashed changes:Assets/Matt/Prefabs/Elivator.prefab
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!33 &5868279882902212430
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &4164093114039648648
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896035344624802385}
-  m_Mesh: {fileID: 33905385842286565, guid: 2140c9dfeb94a0b409f4255248c909bb, type: 3}
---- !u!23 &8544637185442577284
+  m_GameObject: {fileID: 373200248824435863}
+  m_Mesh: {fileID: -4770042951477597769, guid: 30e85b6dbc9b0d043896641b41c718a8, type: 3}
+--- !u!23 &2174433597453972802
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896035344624802385}
+  m_GameObject: {fileID: 373200248824435863}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -74,7 +75,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6d311f979e433d4a93aaf1c2363272b, type: 2}
+  - {fileID: 2100000, guid: df536fb6df98ec94c8b37422dfd775a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,16 +97,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8425747120749974410
+--- !u!65 &366996974886135575
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7172508828472471715}
+  m_GameObject: {fileID: 2577935316630305390}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0000002, y: 1.9999999, z: 0.28971863}
-  m_Center: {x: -0.0025821626, y: 0.99999994, z: -0.029281855}
+  m_Size: {x: 2, y: 1.9999999, z: 0.3482827}
+  m_Center: {x: -0.0025823414, y: 0.99999994, z: 0.00000017881393}

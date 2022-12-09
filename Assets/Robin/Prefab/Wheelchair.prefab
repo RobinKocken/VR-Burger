@@ -1365,6 +1365,10 @@ MonoBehaviour:
   downForce: 1000
   acceleration: 300
   breakingForce: 20000
+  currentAccelerationL: 0
+  currentAccelerationR: 0
+  currentBreakingForceL: 0
+  currentBreakingForceR: 0
 --- !u!65 &3928015331597505305
 BoxCollider:
   m_ObjectHideFlags: 0

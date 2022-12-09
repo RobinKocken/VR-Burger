@@ -23,9 +23,7 @@ public class Movement : MonoBehaviour
     public float currentSpeed;
     public float maxSpeed;
 
-    //[DoNotSerialize] 
     public float dotL, dotR;
-    //[DoNotSerialize]
     public float heightL, heightR;
 
     public float grL, grR;
@@ -38,12 +36,13 @@ public class Movement : MonoBehaviour
     public float acceleration;
     public float breakingForce;
 
-    public float currentAccelerationL;
-    public float currentAccelerationR;
-    public float currentBreakingForceL;
-    public float currentBreakingForceR;
+    float currentAccelerationL;
+    float currentAccelerationR;
+    float currentBreakingForceL;
+    float currentBreakingForceR;
 
-    float[] startTime = new float[3];
+    bool[] start = new bool[4];
+    float[] startTime = new float[4];
 
     void Start()
     {
@@ -57,8 +56,6 @@ public class Movement : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, camOffset.position.y - camOffset.position.y, transform.position.z);
         InputWheel();
-
-        Debug.Log(currentAccelerationR);
     }
 
     void FixedUpdate()
@@ -69,38 +66,38 @@ public class Movement : MonoBehaviour
     void InputWheel()
     {
         //Set bool to false after a frame true and accl to zero
-        if(wbL)
+        if(start[0])
         {            
-            if(Time.time - startTime[1] > 0.5)
+            if(Time.time - startTime[0] > 0.5)
             {
-                wbL = false;
+                start[0] = false;
                 currentAccelerationL = 0;
             }
         }
 
-        if(wfL)
+        if(start[1])
         {
             if(Time.time - startTime[1] > 0.5)
             {
-                wfL = false;
+                start[1] = false;
                 currentAccelerationL = 0;
             }
         }
 
-        if(wbR)
+        if(start[2])
         {
             if(Time.time - startTime[2] > 0.5)
             {
-                wbR = false;
+                start[2] = false;
                 currentAccelerationR = 0;
             }
         }
 
-        if(wfR)
+        if(start[3])
         {
             if(Time.time - startTime[3] > 0.5)
             {
-                wfR = false;
+                start[3] = false;
                 currentAccelerationR = 0;
             }
         }
@@ -141,20 +138,18 @@ public class Movement : MonoBehaviour
             {
                 currentAccelerationL = acceleration;
                 startTime[0] = Time.time;
+
+                start[0] = true;
+                wbL = false;
             }    
             else if(dotL < 0 && grL == 1 && piL == 0 && !wbL && wfL)//Reverse
             {
                 currentAccelerationL = -acceleration;
                 startTime[1] = Time.time;
-            }
-        }
-        else
-        {
-            wbL = false;
-            wfL = false;
 
-            currentAccelerationL = 0;
-            currentBreakingForceL = 0;
+                start[1] = true;
+                wfL = false;
+            }
         }
 
         //If height is below dot
@@ -193,117 +188,17 @@ public class Movement : MonoBehaviour
             {
                 currentAccelerationR = acceleration;
                 startTime[2] = Time.time;
+
+                start[2] = true;
+                wbR = false;
             }            
             else if(dotR < 0 && grR == 1 && piR == 0 && !wbR && wfR)//Reverse
             {
                 currentAccelerationR = -acceleration;
                 startTime[3] = Time.time;
-            }
-        }
-        else
-        {
-            wbR = false;
-            wfR = false;
 
-            currentAccelerationR = 0;
-            currentBreakingForceR = 0;
-        }
-    }
-
-
-    void ControllWheel()
-    {
-        //Left
-        if(heightL < 0)
-        {
-            //Acceleration Left side
-            if(grL == 1 && piL == 0)
-            {
-                //Checking which direction
-                if(dotL < 0 && !wbL && !wfL)
-                {
-                    wbL = true;
-                }
-                else if(dotL > 0 && !wfL && !wbL)
-                {
-                    wfL = true;
-                }
-
-                //Move in Right direction
-                if(wbL && dotL > 0 && !wfL)
-                {
-                    currentAccelerationL = acceleration;
-                    wbL = false;
-                }
-                else if(wfL && dotL < 0 && !wbL)
-                {
-                    currentAccelerationL = -acceleration;
-                    wfL = false;
-                }
-            }
-            else
-            {
-                currentAccelerationL = 0;
-
-                wbL = false;
-                wfL = false;
-            }
-
-            //Breaking Left
-            if(grL == 1 && piL == 1)
-            {
-                currentBreakingForceL = breakingForce;
-            }
-            else
-            {
-                currentBreakingForceL = 0;
-            }
-        }
-
-        //Right
-        if(heightR < 0)
-        {
-            //Acceleration Right Side
-            if(grR == 1 && piR == 0)
-            {
-                //Checking which direction
-                if(dotR < 0 && !wbR && !wfR)
-                {
-                    wbR = true;
-                }
-                else if(dotR > 0 && !wfR && !wbR)
-                {
-                    wfR = true;
-                }
-
-                //Move in Right direction
-                if(wbR && dotR > 0 && !wfR)
-                {
-                    currentAccelerationR = acceleration;
-                    wbR = false;
-                }
-                else if(wfR && dotR < 0 && !wbR)
-                {
-                    currentAccelerationR = -acceleration;
-                    wfR = false;
-                }
-            }
-            else
-            {
-                currentAccelerationR = 0;
-
-                wbR = false;
+                start[3] = true;
                 wfR = false;
-            }
-
-            //Break Right
-            if(grR == 1 && piR == 1)
-            {
-                currentBreakingForceR = breakingForce;
-            }
-            else
-            {
-                currentBreakingForceR = 0;
             }
         }
     }

@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour
     [Header("Variables")]
     public float currentSpeed;
     public float maxSpeed;
+    public float currentAngular;
+    public float maxAngular;
 
     public float dotL, dotR;
     public float heightL, heightR;
@@ -36,13 +38,14 @@ public class Movement : MonoBehaviour
     public float acceleration;
     public float breakingForce;
 
-    float currentAccelerationL;
-    float currentAccelerationR;
+    public float currentAccelerationL;
+    public float currentAccelerationR;
     float currentBreakingForceL;
     float currentBreakingForceR;
 
-    bool[] start = new bool[4];
-    float[] startTime = new float[4];
+    float waitForSec;
+    bool[] start = new bool[2];
+    float[] startTime = new float[2];
 
     void Start()
     {
@@ -64,6 +67,184 @@ public class Movement : MonoBehaviour
     }
 
     void InputWheel()
+    {
+        if(start[0])
+        {
+            if(Time.time - startTime[0] > 0.5)
+            {
+                start[0] = false;
+                currentAccelerationL = 0;
+            }
+        }
+
+        if(start[1])
+        {
+            if(Time.time - startTime[1] > 0.5)
+            {
+                start[1] = false;
+                currentAccelerationR = 0;
+            }
+        }
+
+        if(heightL < 0)
+        {
+            if(grL == 1 && piL == 1)
+            {
+                currentBreakingForceL = breakingForce;
+                currentAccelerationL = 0;
+            }
+            else
+            {
+                currentBreakingForceL = 0;
+            }
+
+            if(dotL < 0)
+            {
+                if(grL == 1 && piL == 0 && !wbL && !wfL)
+                {
+                    wbL = true;
+                }
+                else if(grL == 0 || piL == 1)
+                {
+                    wbL = false;
+                }
+            }
+            else if(dotL > 0)
+            {
+                if(grL == 1 && piL == 0 && !wbL && !wfL)
+                {
+                    wfL = true;
+                }
+                else if(grL == 0 || piL == 1)
+                {
+                    wfL = false;
+                }
+            }
+        }
+
+        if(heightR < 0)
+        {
+            if(grR == 1 && piR == 1)
+            {
+                currentBreakingForceR = breakingForce;
+                currentAccelerationR = 0;
+            }
+            else
+            {
+                currentBreakingForceR = 0;
+            }
+
+            if(dotR < 0)
+            {
+                if(grR == 1 && piR == 0 && !wbR && !wfR)
+                {
+                    wbR = true;
+                }
+                else if(grR == 0 || piR == 1)
+                {
+                    wbR = false;
+                }
+            }
+            else if(dotR > 0)
+            {
+                if(grR == 1 && piR == 0 && !wbR && !wfR)
+                {
+                    wfR = true;
+                }
+                else if(grR == 0 || piR == 1)
+                {
+                    wfR = false;
+                }
+            }
+        }
+
+        if(wbL && wbR)
+        {
+            if(dotL > 0 && dotR > 0)
+            {
+                currentAccelerationL = acceleration;
+                currentAccelerationR = acceleration;
+
+                startTime[0] = Time.time;
+                startTime[1] = Time.time;
+
+                start[0] = true;
+                start[1] = true;
+
+                wbL = false;
+                wbR = false;
+            }
+        }
+        else if(wfL && wfR)
+        {
+            if(dotL < 0 && dotR < 0)
+            {
+                currentAccelerationL = -acceleration;
+                currentAccelerationR = -acceleration;
+
+                startTime[0] = Time.time;
+                startTime[1] = Time.time;
+
+                start[0] = true;
+                start[1] = true;
+
+                wfL = false;
+                wfR = false;
+            }
+        }
+
+        if(wbL && !wfL && !wbR)
+        {
+            if(dotL > 0)
+            {
+                currentAccelerationL = acceleration;
+
+                startTime[0] = Time.time;
+                start[0] = true;
+
+                wbL = false;
+            }
+        }
+        else if(!wbL && wfL && !wfR)
+        {
+            if(dotL < 0)
+            {
+                currentAccelerationL = -acceleration;
+
+                startTime[0] = Time.time;
+                start[0] = true;
+
+                wfL = false;
+            }
+        }
+
+        if(wbR && !wfR && !wbL)
+        {
+            if(dotR > 0)
+            {
+                currentAccelerationR = acceleration;
+
+                startTime[1] = Time.time;
+                start[1] = true;
+
+                wbR = false;
+            }
+        }
+        if(!wbR && wfR && !wfL)
+        {
+            if(dotR < 0)
+            {
+                currentAccelerationR = -acceleration;
+
+                startTime[1] = Time.time;
+                start[1] = true;
+
+                wfR = false;
+            }
+        }
+    }
+ 
+    void InputWheelOldVersion()
     {
         //Set bool to false after a frame true and accl to zero
         if(start[0])
@@ -214,6 +395,9 @@ public class Movement : MonoBehaviour
             currentAccelerationL = 0;
             currentAccelerationR = 0;
         }
+
+        currentAngular = rb.angularVelocity.magnitude;
+        rb.maxAngularVelocity = maxAngular;
 
         colliderLeft.motorTorque = currentAccelerationL;
         colliderRight.motorTorque = currentAccelerationR;

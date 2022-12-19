@@ -2269,7 +2269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5482add2c9db8dd4aa7f4a82882320e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blue: {fileID: 2100000, guid: 2a0870eb80b542d4e94249f36dfaa97d, type: 2}
+  oldMat: {fileID: 0}
   handPhysic: {fileID: 3186171979145302397}
+  hand: {fileID: 0}
   grip:
     m_UseReference: 1
     m_Action:
@@ -2288,6 +2291,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   target: {fileID: 0}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  maxDis: 0.5
+  set: 0
+  nearObjects: []
+  closetsObject: {fileID: 0}
+  snapPos: {x: 0, y: 0, z: 0}
 --- !u!135 &4783299905827018600
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2297,7 +2308,7 @@ SphereCollider:
   m_GameObject: {fileID: 4783299905827018604}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}

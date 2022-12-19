@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2889843341783908791}
   - component: {fileID: 2284752864725290514}
   - component: {fileID: 4058277532415376088}
+  - component: {fileID: 690488752916274501}
   m_Layer: 0
   m_Name: 'burger top bun '
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2544843412738054925}
-  m_LocalRotation: {x: 0, y: -0.0018729898, z: -0, w: 0.9999983}
+  m_LocalRotation: {x: 0, y: -0.001876279, z: 0, w: 0.9999983}
   m_LocalPosition: {x: 0.9661664, y: 0.00000011175871, z: -1.0190787}
   m_LocalScale: {x: 0.05703732, y: 0.079931624, z: 0.057120886}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.215, z: 0}
 --- !u!33 &2284752864725290514
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &690488752916274501
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2544843412738054925}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4385166375741520323, guid: 87bc9e2c4938ba245979feacf20eaa30, type: 3}

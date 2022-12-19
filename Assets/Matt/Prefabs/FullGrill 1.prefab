@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4555761528339858653}
   - component: {fileID: 8220839327579958830}
   - component: {fileID: 7471821203244021893}
+  - component: {fileID: 2456969564077445445}
   m_Layer: 0
   m_Name: Grill
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2456969564077445445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610896911852141068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2472804, y: 0.964975, z: 0.7431485}
+  m_Center: {x: 3.1579665e-17, y: 0.4824875, z: -0.013402775}
 --- !u!1 &5901706402088590019
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,9 +142,10 @@ GameObject:
   - component: {fileID: 1678148417899932482}
   - component: {fileID: 7678398171644800198}
   - component: {fileID: 2520919877957255889}
-  m_Layer: 0
+  - component: {fileID: 3983798070362721485}
+  m_Layer: 7
   m_Name: Knop1
-  m_TagString: Untagged
+  m_TagString: Rot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +215,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3983798070362721485
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5901706402088590019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05853171
+  m_Center: {x: -0.00000024959445, y: -0.00000005203868, z: -0.015}
 --- !u!1 &7158727421663159413
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,9 +239,10 @@ GameObject:
   - component: {fileID: 28548679996504444}
   - component: {fileID: 2013775977542537433}
   - component: {fileID: 378417624665010484}
-  m_Layer: 0
+  - component: {fileID: 963928217304610059}
+  m_Layer: 7
   m_Name: Knop2
-  m_TagString: Untagged
+  m_TagString: Rot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,3 +312,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &963928217304610059
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158727421663159413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05853171
+  m_Center: {x: -0.00000024959445, y: -0.00000017124798, z: -0.015}

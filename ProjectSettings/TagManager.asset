@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Left
   - Right
+  - Snap
+  - Pick
+  - Rot
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - Interactable
   - LeftHand
   - RightHand
-  - 
+  - XR
   - 
   - 
   - 

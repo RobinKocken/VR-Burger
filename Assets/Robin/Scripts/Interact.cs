@@ -29,12 +29,10 @@ public class Interact : MonoBehaviour
     public float maxDis;
     Transform ignoreTarget;
     XRDirectInteractor script;
-    bool setOff;
     float distance;
 
     Quaternion initialObjectRotation;
     Quaternion initialControllerRotation;
-    float angleDiff;
     public bool set;
 
     public List<GameObject> nearObjects;
@@ -70,7 +68,7 @@ public class Interact : MonoBehaviour
 
         if(!handClosed)
         {
-            if(Time.time - startTime > 0.5)
+            if(Time.time - startTime > 0.3)
             {
                 handPhysic.SetActive(true);
             }
@@ -106,7 +104,6 @@ public class Interact : MonoBehaviour
             if(ignoreCollider.Length > 0)
             {
                 ignoreTarget = ignoreCollider[0].transform;
-                setOff = true;
             }
             else
             {
@@ -115,11 +112,11 @@ public class Interact : MonoBehaviour
         }
         else
         {
-            if(target && !setOff)
+            if(target && !ignoreTarget)
             {
                 startTime = Time.time;
 
-                if(target.CompareTag("Snap"))
+                if(target.CompareTag("Item") || target.CompareTag("Patty"))
                 {
                     handPhysic.SetActive(false);
                     
@@ -151,45 +148,13 @@ public class Interact : MonoBehaviour
                     Quaternion controllerAngularDifference = initialControllerRotation * Quaternion.Inverse(transform.rotation);
                     Quaternion axisZ = (controllerAngularDifference * initialObjectRotation);
 
-                    target.transform.eulerAngles = new Vector3(target.transform.eulerAngles.x, target.transform.eulerAngles.y, -axisZ.eulerAngles.z);
-                }
-                else if(target.CompareTag("Item"))
-                {
-                    handPhysic.SetActive(false);
+                    //target.transform.eulerAngles = new Vector3(target.transform.eulerAngles.x, target.transform.eulerAngles.y, -axisZ.eulerAngles.z);
+                    //float z = Mathf.Clamp(axisZ.eulerAngles.z, -90, 0);
 
-                    nearObjects.Remove(target);
-
-                    target.GetComponent<Rigidbody>().velocity = (transform.position - target.transform.position) / Time.fixedDeltaTime;
-
-                    target.GetComponent<Rigidbody>().maxAngularVelocity = 20;
-
-                    Quaternion deltaRot = transform.rotation * Quaternion.Inverse(target.transform.rotation);
-                    Vector3 eulerRot = new Vector3(Mathf.DeltaAngle(0, deltaRot.eulerAngles.x), Mathf.DeltaAngle(0, deltaRot.eulerAngles.y),
-                    Mathf.DeltaAngle(0, deltaRot.eulerAngles.z));
-
-                    eulerRot *= 0.95f;
-                    eulerRot *= Mathf.Deg2Rad;
-                    target.GetComponent<Rigidbody>().angularVelocity = eulerRot / Time.fixedDeltaTime;
-
-                    foreach(GameObject g in nearObjects)
-                    {
-                        float dis = Vector3.Distance(target.transform.position, g.transform.position);
-
-                        if(dis < oldDis)
-                        {
-                            closetsObject = g.gameObject;
-                            oldDis = dis;
-                        }
-                    }                
-
-                    if(closetsObject)
-                    {
-                        snapPos = closetsObject.transform.GetChild(0).transform.position;
-                        snapRot = closetsObject.transform.rotation;
-                    }
+                    target.transform.rotation = Quaternion.Euler(target.transform.eulerAngles.x, target.transform.eulerAngles.y, -axisZ.eulerAngles.z);
                 }
             }
-            else if(!target && setOff && ignoreTarget != null)
+            else if(!target && ignoreTarget)
             {
                 handPhysic.SetActive(false);
                 distance = Vector3.Distance(ignoreTarget.position, transform.position);
@@ -197,7 +162,6 @@ public class Interact : MonoBehaviour
                 if(distance > maxDis)
                 {
                     script.enabled = false;
-                    setOff = false;
                     handPhysic.SetActive(true);
                 }
             }

@@ -6,10 +6,9 @@ TagManager:
   tags:
   - Left
   - Right
-  - Snap
-  - Pick
   - Rot
   - Item
+  - Patty
   layers:
   - Default
   - TransparentFX

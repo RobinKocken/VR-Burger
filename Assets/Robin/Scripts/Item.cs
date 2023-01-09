@@ -4,20 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public GameObject top;
-
-    public bool active;
-
-    void Start()
-    {
-        top = transform.GetChild(0).gameObject;
-    }
-
-    void Update()
-    {
-        if(active)
-        {
-
-        }
-    }
+    public int item;
+    public bool pickedUp;
+    public int stage;
 }

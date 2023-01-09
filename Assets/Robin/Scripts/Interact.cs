@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class Interact : MonoBehaviour
 {
-    public Material blue;
-    public Material oldMat;
+    Item item;
 
     public GameObject handPhysic;
     public GameObject hand;
@@ -17,7 +17,7 @@ public class Interact : MonoBehaviour
     public float disToPickUp;
     public LayerMask layer;
 
-    bool handClosed;
+    public bool handClosed;
     float value;
     public GameObject target;
 
@@ -34,13 +34,6 @@ public class Interact : MonoBehaviour
     Quaternion initialObjectRotation;
     Quaternion initialControllerRotation;
     public bool set;
-
-    public List<GameObject> nearObjects;
-    public GameObject closetsObject;
-    float oldDis = 99;
-    public Vector3 snapPos;
-    Quaternion snapRot;
-
 
     float startTime;
 
@@ -79,15 +72,14 @@ public class Interact : MonoBehaviour
     {
         if(!handClosed)
         {
+            if(item != null)
+            {
+                item.pickedUp = false;
+                item = null;
+            }
+
             script.enabled = true;
             set = false;
-
-            if(closetsObject)
-            {
-                target.transform.position = snapPos;
-                target.transform.rotation = snapRot;
-                closetsObject = null;
-            }
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, disToPickUp, layer);
             Collider[] ignoreCollider = Physics.OverlapSphere(transform.position, disToPickUp, ignoreLayer);
@@ -119,7 +111,10 @@ public class Interact : MonoBehaviour
                 if(target.CompareTag("Item") || target.CompareTag("Patty"))
                 {
                     handPhysic.SetActive(false);
-                    
+
+                    item = target.GetComponent<Item>();
+                    item.pickedUp = true;
+
                     target.GetComponent<Rigidbody>().velocity = (transform.position - target.transform.position) / Time.fixedDeltaTime;
 
                     target.GetComponent<Rigidbody>().maxAngularVelocity = 20;
@@ -148,9 +143,6 @@ public class Interact : MonoBehaviour
                     Quaternion controllerAngularDifference = initialControllerRotation * Quaternion.Inverse(transform.rotation);
                     Quaternion axisZ = (controllerAngularDifference * initialObjectRotation);
 
-                    //target.transform.eulerAngles = new Vector3(target.transform.eulerAngles.x, target.transform.eulerAngles.y, -axisZ.eulerAngles.z);
-                    //float z = Mathf.Clamp(axisZ.eulerAngles.z, -90, 0);
-
                     target.transform.rotation = Quaternion.Euler(target.transform.eulerAngles.x, target.transform.eulerAngles.y, -axisZ.eulerAngles.z);
                 }
             }
@@ -165,22 +157,6 @@ public class Interact : MonoBehaviour
                     handPhysic.SetActive(true);
                 }
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Item"))
-        {
-            nearObjects.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Item"))
-        {
-            nearObjects.Remove(other.gameObject);
         }
     }
 }

@@ -17,6 +17,8 @@ public class BurgerMaker : MonoBehaviour
 
     GameObject clone;
 
+    bool once;
+
     void Start()
     {
         burger.Add(bottomBox);
@@ -31,12 +33,19 @@ public class BurgerMaker : MonoBehaviour
                 Destroy(clone);
 
                 item.transform.position = burger.Last().transform.GetChild(0).position;
-                item.transform.eulerAngles = new Vector3(0, 0, 0);
+                item.transform.rotation = burger.Last().transform.GetChild(0).rotation;
 
                 item.GetComponent<Rigidbody>().isKinematic = true;
                 item.GetComponent<Rigidbody>().detectCollisions = false;
 
-                burger.Add(item);
+                if(!once)
+                {
+                    burger[0] = item;
+                    once = true;
+                }
+                
+
+                item.transform.SetParent(bottomBox.transform);
 
                 interact = null;
                 item = null;
@@ -48,25 +57,37 @@ public class BurgerMaker : MonoBehaviour
     {
         if(other.CompareTag("Item") || other.CompareTag("Patty"))
         {
-            item = other.gameObject;
-            interact = item.GetComponent<Item>();
+            if(other.GetComponent<Item>().item >= 0)
+            {
+                Debug.Log("Enter");
 
-            clone = Instantiate(item, burger.Last().transform.GetChild(0).position, Quaternion.identity);
+                item = other.gameObject;
+                interact = item.GetComponent<Item>();
 
-            clone.tag = "Untagged";
-            clone.GetComponent<Rigidbody>().isKinematic = true;
-            clone.GetComponent<Rigidbody>().detectCollisions = false;
-            clone.GetComponent<Renderer>().material = blue;
+                clone = Instantiate(item, burger.Last().transform.GetChild(0).position, burger.Last().transform.GetChild(0).rotation);
+
+                clone.tag = "Untagged";
+                clone.GetComponent<Rigidbody>().isKinematic = true;
+                clone.GetComponent<Rigidbody>().detectCollisions = false;
+                clone.GetComponent<Renderer>().material = blue;
+
+                clone.transform.SetParent(bottomBox.transform);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(item)
+        if(other.CompareTag("Item") || other.CompareTag("Patty"))
         {
-            Destroy(clone);
-            interact = null;
-            item = null;
+            if(item)
+            {
+                Debug.Log("Exit");
+
+                Destroy(clone);
+                interact = null;
+                item = null;
+            }
         }
     }
 }

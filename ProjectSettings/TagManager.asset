@@ -9,6 +9,7 @@ TagManager:
   - Rot
   - Item
   - Patty
+  - Pin
   layers:
   - Default
   - TransparentFX

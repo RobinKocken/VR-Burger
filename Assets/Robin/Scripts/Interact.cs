@@ -108,7 +108,7 @@ public class Interact : MonoBehaviour
             {
                 startTime = Time.time;
 
-                if(target.CompareTag("Item") || target.CompareTag("Patty"))
+                if(target.CompareTag("Item") || target.CompareTag("Patty") || target.CompareTag("Pin"))
                 {
                     handPhysic.SetActive(false);
 

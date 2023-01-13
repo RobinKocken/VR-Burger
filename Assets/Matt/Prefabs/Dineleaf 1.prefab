@@ -9,14 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3960428678157546498}
+  - component: {fileID: 7035270260523754937}
   - component: {fileID: 97284183266081703}
   - component: {fileID: 2791501946312609645}
-  - component: {fileID: -8645703818599436967}
-  - component: {fileID: 2620187092670732991}
-  - component: {fileID: 3125628482433814407}
-  - component: {fileID: 8400537477696114318}
-  - component: {fileID: -8007206104693429861}
-  - component: {fileID: 8027429123357511997}
+  - component: {fileID: 343328834532456722}
   m_Layer: 0
   m_Name: Dineleaf 1
   m_TagString: Untagged
@@ -31,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4448875056175115960}
-  m_LocalRotation: {x: -0, y: -0.70710695, z: -0, w: 0.70710665}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.7553098, y: 0.74312985, z: -1.2183098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39,6 +35,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &7035270260523754937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448875056175115960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be41a0bc77fc4c4c83becdacd849d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &97284183266081703
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,7 +97,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-8645703818599436967
+--- !u!65 &343328834532456722
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,70 +108,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30171987, y: 0.014677747, z: 0.016395882}
-  m_Center: {x: 0, y: 0.00092507666, z: -0.18427855}
---- !u!65 &2620187092670732991
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448875056175115960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.013566256, y: 0.014677747, z: 0.38495296}
-  m_Center: {x: 0.14407682, y: 0.00092507666, z: 0}
---- !u!65 &3125628482433814407
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448875056175115960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.30171987, y: 0.014677747, z: 0.016395882}
-  m_Center: {x: 0, y: 0.00092507666, z: -0.18427855}
---- !u!65 &8400537477696114318
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448875056175115960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.30171987, y: 0.014677747, z: 0.013707027}
-  m_Center: {x: 0, y: 0.00092507666, z: 0.18562296}
---- !u!65 &-8007206104693429861
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448875056175115960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01458025, y: 0.014677747, z: 0.38495296}
-  m_Center: {x: -0.14356983, y: 0.00092507666, z: 0}
---- !u!65 &8027429123357511997
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448875056175115960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.30171987, y: 0.0021588001, z: 0.38495296}
-  m_Center: {x: 0, y: -0.005334397, z: 0}
+  m_Size: {x: 0.30171987, y: 0.014677747, z: 0.38495296}
+  m_Center: {x: 0, y: 0.00092507666, z: 0}

@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using TMPro;
 
 public class Customers : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class Customers : MonoBehaviour
     public Tray trayScript;
     public Pin pinScript;
 
-    public GameObject customer;
+    public GameObject[] customer;
     public GameObject pin;
     public GameObject card;
     public GameObject tray;
@@ -20,6 +20,11 @@ public class Customers : MonoBehaviour
     GameObject currentCustomer;
     GameObject goingCustomer;
 
+    GameObject cloneCard;
+    GameObject cloneTray;
+
+    public TMP_Text burgerText;
+
     public List<GameObject> waypoint;
 
     public bool rightOrder;
@@ -27,20 +32,21 @@ public class Customers : MonoBehaviour
     public bool spawned;
     public bool activeCostumer;
     public bool reveived;
+    public bool pinned;
 
-    float startTime;
+    public int spawnCount = 0;
+    public int num = 3;
+    public int orderNumber;
 
-    int spawnCount = 0;
-    int num = 3;
-    int orderNumber = 5;
     public Vector3 trayPos;
+    public Vector3 cardPos;
 
     void Start()
     {
         pinScript = pin.GetComponent<Pin>();
         trayScript = tray.GetComponent<Tray>();
 
-        trayPos = tray.transform.position;
+        cloneTray = Instantiate(tray, trayPos, Quaternion.Euler(0, -90, 0));
 
         for(int i = 0; i < transform.childCount; i++)
         {
@@ -60,7 +66,8 @@ public class Customers : MonoBehaviour
         {
             if(spawnCount == 0)
             {
-                spawnedCustomer = Instantiate(customer, waypoint[0].transform.position, waypoint[0].transform.rotation);
+                int c = Random.Range(0, 2);
+                spawnedCustomer = Instantiate(customer[c], waypoint[0].transform.position, waypoint[0].transform.rotation);
                 spawnCount++;
             }
 
@@ -84,19 +91,38 @@ public class Customers : MonoBehaviour
 
             if(Vector3.Distance(currentCustomer.transform.position, waypoint[2].transform.position) < 0.3)
             {
+                cloneCard = Instantiate(card, currentCustomer.transform.GetChild(2).position, Quaternion.identity);
+                cloneCard.GetComponent<Rigidbody>().isKinematic = true;
+
+                orderNumber = Random.Range(0, 5);
+
                 activeCostumer = true;
                 spawned = false;
-
-                startTime = Time.time;
+                pinned = true;
             }
         }
 
         // Waiting for order and checking if its correct
         if(activeCostumer)
         {
+            burgerText.text = food[orderNumber].burgerName;
+
+            if(pinned)
+            {
+                cloneCard.transform.position = Vector3.Lerp(cloneCard.transform.position, cardPos, 3 * Time.deltaTime);
+
+                if(Vector3.Distance(cloneCard.transform.position, cardPos) < 0.1)
+                {
+                    cloneCard.GetComponent<Rigidbody>().isKinematic = false;
+                    pinned = false;
+                }
+            }
+
             if(pinScript.paid)
             {
-                trayScript.TrayGo();
+                Debug.Log("Paid");
+
+                cloneTray.GetComponent<Tray>().TrayGo();
                 CheckOrder();
 
                 if(rightOrder)
@@ -108,12 +134,13 @@ public class Customers : MonoBehaviour
                     Debug.Log("RightOrder = False");
                 }
 
-                tray.transform.SetParent(currentCustomer.transform);
-                tray.transform.position = Vector3.Lerp(tray.transform.position, currentCustomer.transform.GetChild(2).position, 3 * Time.deltaTime);
+                cloneTray.transform.SetParent(currentCustomer.transform);
+                cloneTray.transform.position = Vector3.Lerp(cloneTray.transform.position, currentCustomer.transform.GetChild(2).position, 3 * Time.deltaTime);
 
-                if(Time.time - startTime > 2 && !goingCustomer)
+                if(Vector3.Distance(cloneTray.transform.position, currentCustomer.transform.GetChild(2).position) < 0.2)
                 {
-                    tray = Instantiate(tray, trayPos, Quaternion.Euler(0, -90, 0));
+                    cloneTray = Instantiate(tray, trayPos, Quaternion.Euler(0, -90, 0));
+                    Destroy(cloneCard);
 
                     goingCustomer = currentCustomer;
                     currentCustomer = null;
@@ -131,7 +158,7 @@ public class Customers : MonoBehaviour
             goingCustomer.transform.position = Vector3.Lerp(goingCustomer.transform.position, waypoint[num].transform.position, 1 * Time.deltaTime);
             goingCustomer.transform.rotation = Quaternion.Lerp(goingCustomer.transform.rotation, waypoint[num].transform.rotation, 1 * Time.deltaTime);
 
-            if(Vector3.Distance(goingCustomer.transform.position, waypoint[num].transform.position) < 0.3)
+            if(Vector3.Distance(goingCustomer.transform.position, waypoint[num].transform.position) < 0.5)
             {
                 if(num == 3)
                 {
@@ -187,5 +214,7 @@ public class Customers : MonoBehaviour
 [System.Serializable]
 public class Food
 {
+    public string burgerName;
     public List<GameObject> burger;
+
 }

@@ -17,9 +17,8 @@ public class Tray : MonoBehaviour
             }
 
             items[i].GetComponent<Rigidbody>().isKinematic = true;
-            //items[i].GetComponent<Rigidbody>().detectCollisions = false;
-
-            transform.SetParent(items[i].transform);
+            
+            items[i].transform.SetParent(gameObject.transform);
         }
     }
 

@@ -21,7 +21,7 @@ public class BurgerMaker : MonoBehaviour
 
     void Start()
     {
-        burger.Add(bottomBox);
+
     }
 
     void Update()
@@ -32,18 +32,21 @@ public class BurgerMaker : MonoBehaviour
             {
                 Destroy(clone);
 
-                item.transform.position = burger.Last().transform.GetChild(0).position;
-                item.transform.rotation = burger.Last().transform.GetChild(0).rotation;
-
-                item.GetComponent<Rigidbody>().isKinematic = true;
-                item.GetComponent<Rigidbody>().detectCollisions = false;
-
                 if(!once)
                 {
-                    burger[0] = item;
+                    item.transform.position = bottomBox.transform.GetChild(0).position;
+                    item.transform.rotation = bottomBox.transform.GetChild(0).rotation;
                     once = true;
                 }
-                
+                else
+                {
+                    item.transform.position = burger.Last().transform.GetChild(0).position;
+                    item.transform.rotation = burger.Last().transform.GetChild(0).rotation;
+                }
+
+
+                item.GetComponent<Rigidbody>().isKinematic = true;
+                item.GetComponent<Rigidbody>().detectCollisions = false;              
 
                 item.transform.SetParent(bottomBox.transform);
 
@@ -59,12 +62,17 @@ public class BurgerMaker : MonoBehaviour
         {
             if(other.GetComponent<Item>().item >= 0)
             {
-                Debug.Log("Enter");
-
                 item = other.gameObject;
                 interact = item.GetComponent<Item>();
 
-                clone = Instantiate(item, burger.Last().transform.GetChild(0).position, burger.Last().transform.GetChild(0).rotation);
+                if(!once)
+                {
+                    clone = Instantiate(item, bottomBox.transform.GetChild(0).position, bottomBox.transform.GetChild(0).rotation);
+                }
+                else
+                {
+                    clone = Instantiate(item, burger.Last().transform.GetChild(0).position, burger.Last().transform.GetChild(0).rotation);
+                }
 
                 clone.tag = "Untagged";
                 clone.GetComponent<Rigidbody>().isKinematic = true;
@@ -82,8 +90,6 @@ public class BurgerMaker : MonoBehaviour
         {
             if(item)
             {
-                Debug.Log("Exit");
-
                 Destroy(clone);
                 interact = null;
                 item = null;

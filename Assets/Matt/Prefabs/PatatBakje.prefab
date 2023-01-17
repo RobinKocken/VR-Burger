@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8906702000211660985}
   - component: {fileID: 5491345704052825884}
   - component: {fileID: 7769231192099875798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PatatBakje
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

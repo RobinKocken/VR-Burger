@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5041918251575271197}
   - component: {fileID: -8134983253268072220}
   - component: {fileID: 7345395569307949110}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pickle
   m_TagString: Item
   m_Icon: {fileID: 0}

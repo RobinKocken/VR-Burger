@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 690488752916274501}
   - component: {fileID: 4107935825698148727}
   - component: {fileID: 7250747870860934912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'burger top bun '
   m_TagString: Item
   m_Icon: {fileID: 0}

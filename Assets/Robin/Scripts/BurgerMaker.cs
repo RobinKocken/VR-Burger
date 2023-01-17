@@ -36,12 +36,16 @@ public class BurgerMaker : MonoBehaviour
                 {
                     item.transform.position = bottomBox.transform.GetChild(0).position;
                     item.transform.rotation = bottomBox.transform.GetChild(0).rotation;
+
+                    burger.Add(item);
                     once = true;
                 }
                 else
                 {
                     item.transform.position = burger.Last().transform.GetChild(0).position;
                     item.transform.rotation = burger.Last().transform.GetChild(0).rotation;
+
+                    burger.Add(item);
                 }
 
 

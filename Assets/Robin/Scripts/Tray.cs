@@ -6,6 +6,7 @@ public class Tray : MonoBehaviour
 {
     public List<GameObject> items;
     public List<GameObject> burger;
+    public bool full;
 
     public void TrayGo()
     {
@@ -15,10 +16,16 @@ public class Tray : MonoBehaviour
             {
                 burger = items[i].GetComponent<BurgerMaker>().burger;
             }
+            else if(items[i].GetComponent<FryMaker>())
+            {
+                full = items[i].GetComponent<FryMaker>().full;
+            }
 
             items[i].GetComponent<Rigidbody>().isKinematic = true;
             
             items[i].transform.SetParent(gameObject.transform);
+
+            Debug.Log(items[i].name);
         }
     }
 

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using TMPro;
 
 public class Customers : MonoBehaviour
 {
     public Food[] food;
+    public int fries;
 
     public Tray trayScript;
     public Pin pinScript;
@@ -44,9 +44,9 @@ public class Customers : MonoBehaviour
     void Start()
     {
         pinScript = pin.GetComponent<Pin>();
-        trayScript = tray.GetComponent<Tray>();
 
         cloneTray = Instantiate(tray, trayPos, Quaternion.Euler(0, -90, 0));
+        trayScript = cloneTray.GetComponent<Tray>();
 
         for(int i = 0; i < transform.childCount; i++)
         {
@@ -66,7 +66,7 @@ public class Customers : MonoBehaviour
         {
             if(spawnCount == 0)
             {
-                int c = Random.Range(0, 2);
+                int c = Random.Range(0, 3);
                 spawnedCustomer = Instantiate(customer[c], waypoint[0].transform.position, waypoint[0].transform.rotation);
                 spawnCount++;
             }
@@ -95,6 +95,7 @@ public class Customers : MonoBehaviour
                 cloneCard.GetComponent<Rigidbody>().isKinematic = true;
 
                 orderNumber = Random.Range(0, 5);
+                fries = Random.Range(0, 2);
 
                 activeCostumer = true;
                 spawned = false;
@@ -105,7 +106,9 @@ public class Customers : MonoBehaviour
         // Waiting for order and checking if its correct
         if(activeCostumer)
         {
-            burgerText.text = food[orderNumber].burgerName;
+            if(fries == 0) burgerText.text = $"{food[orderNumber].burgerName}";
+            else if(fries == 1) burgerText.text = $"{food[orderNumber].burgerName} \nFries";
+
 
             if(pinned)
             {
@@ -122,7 +125,7 @@ public class Customers : MonoBehaviour
             {
                 Debug.Log("Paid");
 
-                cloneTray.GetComponent<Tray>().TrayGo();
+                trayScript.TrayGo();
                 CheckOrder();
 
                 if(rightOrder)
@@ -140,6 +143,7 @@ public class Customers : MonoBehaviour
                 if(Vector3.Distance(cloneTray.transform.position, currentCustomer.transform.GetChild(2).position) < 0.2)
                 {
                     cloneTray = Instantiate(tray, trayPos, Quaternion.Euler(0, -90, 0));
+                    trayScript = cloneTray.GetComponent<Tray>();
                     Destroy(cloneCard);
 
                     goingCustomer = currentCustomer;
@@ -201,11 +205,24 @@ public class Customers : MonoBehaviour
             else
             {
                 rightOrder = false;
+                return;
             }
         }
         else
         {
             rightOrder = false;
+            return;
+        }
+
+        if(fries == 0)
+        {
+            if(trayScript.full) rightOrder = false;
+            else if(!trayScript.full) rightOrder = true;
+        }
+        else if(fries == 1)
+        {
+            if(trayScript.full) rightOrder = true;
+            else if(!trayScript.full) rightOrder = false;
         }
     }
 
@@ -216,5 +233,4 @@ public class Food
 {
     public string burgerName;
     public List<GameObject> burger;
-
 }

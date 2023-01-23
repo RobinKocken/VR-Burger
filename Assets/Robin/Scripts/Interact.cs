@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class Interact : MonoBehaviour
 {
@@ -111,6 +110,8 @@ public class Interact : MonoBehaviour
                 if(target.CompareTag("Item") || target.CompareTag("Patty") || target.CompareTag("Pin"))
                 {
                     handPhysic.SetActive(false);
+
+                    if(target.GetComponent<Rigidbody>().isKinematic == true) target.GetComponent<Rigidbody>().isKinematic = false;
 
                     item = target.GetComponent<Item>();
                     item.pickedUp = true;

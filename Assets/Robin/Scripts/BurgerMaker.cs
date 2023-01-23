@@ -19,11 +19,6 @@ public class BurgerMaker : MonoBehaviour
 
     bool once;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if(clone)

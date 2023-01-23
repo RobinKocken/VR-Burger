@@ -98,14 +98,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patties: []
   timer: []
+  num: 
   button: {fileID: 1274037838380248807}
   cooked: {fileID: 2100000, guid: 6ff2d9c6092fea440ac83020bb050c78, type: 2}
   overCooked: {fileID: 2100000, guid: c5ac123d0ae943c44b1cb96dc94e97f7, type: 2}
-  cookedTime: 0
-  overCookedTimer: 0
+  cookedTime: 15
+  overCookedTimer: 60
   degrees: 0
   degreesText: {fileID: 6980202872538179705}
-  rot: 0
 --- !u!65 &9066554099190450782
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: -4143955258785414137}
   - component: {fileID: 3124838477683920762}
   - component: {fileID: -1088025288420249198}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'bacon strip '
   m_TagString: Item
   m_Icon: {fileID: 0}

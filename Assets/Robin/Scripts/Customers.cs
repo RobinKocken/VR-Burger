@@ -5,6 +5,8 @@ using TMPro;
 
 public class Customers : MonoBehaviour
 {
+    public float rating;
+
     public Food[] food;
     public int fries;
 
@@ -41,6 +43,9 @@ public class Customers : MonoBehaviour
     public Vector3 trayPos;
     public Vector3 cardPos;
 
+    public float waitTime;
+    float nowTime;
+
     void Start()
     {
         pinScript = pin.GetComponent<Pin>();
@@ -51,12 +56,19 @@ public class Customers : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             waypoint.Add(transform.GetChild(i).gameObject);
-        }        
+        }
+
+        rating = 4;
     }
     
     void Update()
     {
         Customer();
+    }
+
+    void Rating()
+    {
+
     }
 
     void Customer()
@@ -100,6 +112,8 @@ public class Customers : MonoBehaviour
                 activeCostumer = true;
                 spawned = false;
                 pinned = true;
+
+                nowTime = Time.time;
             }
         }
 
@@ -130,11 +144,21 @@ public class Customers : MonoBehaviour
 
                 if(rightOrder)
                 {
-                    Debug.Log("RightOrder = True");
+                    rating += 0.5f;
+
+                    if(rating >= 5)
+                    {
+                        rating = 5;
+                    }
                 }
                 else if(!rightOrder)
                 {
-                    Debug.Log("RightOrder = False");
+                    rating -= 0.5f;
+
+                    if(rating <= 0)
+                    {
+                        GameOver();
+                    }
                 }
 
                 cloneTray.transform.SetParent(currentCustomer.transform);
@@ -153,6 +177,26 @@ public class Customers : MonoBehaviour
                     pinScript.paid = false;
                     reveived = true;
                 }
+            }
+            else if(Time.time - nowTime > waitTime)
+            {
+                Debug.Log("Angry");
+
+                rating -= 0.5f;
+
+                if(rating <= 0)
+                {
+                    GameOver();
+                }
+
+                Destroy(cloneCard);
+
+                goingCustomer = currentCustomer;
+                currentCustomer = null;
+
+                activeCostumer = false;
+                pinScript.paid = false;
+                reveived = true;
             }
         }
 
@@ -224,6 +268,11 @@ public class Customers : MonoBehaviour
             if(trayScript.full) rightOrder = true;
             else if(!trayScript.full) rightOrder = false;
         }
+    }
+
+    void GameOver()
+    {
+
     }
 
 }

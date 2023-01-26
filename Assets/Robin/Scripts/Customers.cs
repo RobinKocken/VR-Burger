@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Customers : MonoBehaviour
 {
@@ -35,6 +38,7 @@ public class Customers : MonoBehaviour
     public bool activeCostumer;
     public bool reveived;
     public bool pinned;
+    bool once;
 
     public int spawnCount = 0;
     public int num = 3;
@@ -45,6 +49,12 @@ public class Customers : MonoBehaviour
 
     public float waitTime;
     float nowTime;
+
+    public Sprite star;
+    public Sprite halfStar;
+    public Sprite emptyStar;
+
+    public RawImage[] rawSlot;
 
     void Start()
     {
@@ -58,9 +68,11 @@ public class Customers : MonoBehaviour
             waypoint.Add(transform.GetChild(i).gameObject);
         }
 
-        rating = 4;
+        rating = 3;
+
+        StarSystem(rating);
     }
-    
+
     void Update()
     {
         Customer();
@@ -78,7 +90,7 @@ public class Customers : MonoBehaviour
         {
             if(spawnCount == 0)
             {
-                int c = Random.Range(0, 3);
+                int c = UnityEngine.Random.Range(0, 3);
                 spawnedCustomer = Instantiate(customer[c], waypoint[0].transform.position, waypoint[0].transform.rotation);
                 spawnCount++;
             }
@@ -95,7 +107,7 @@ public class Customers : MonoBehaviour
                 spawned = true;
             }
         }
-         //Going to next Waypoint
+        //Going to next Waypoint
         if(!activeCostumer && spawned)
         {
             currentCustomer.transform.position = Vector3.Lerp(currentCustomer.transform.position, waypoint[2].transform.position, 1 * Time.deltaTime);
@@ -106,12 +118,13 @@ public class Customers : MonoBehaviour
                 cloneCard = Instantiate(card, currentCustomer.transform.GetChild(2).position, Quaternion.identity);
                 cloneCard.GetComponent<Rigidbody>().isKinematic = true;
 
-                orderNumber = Random.Range(0, 5);
-                fries = Random.Range(0, 2);
+                orderNumber = UnityEngine.Random.Range(0, 5);
+                fries = UnityEngine.Random.Range(0, 2);
 
                 activeCostumer = true;
                 spawned = false;
                 pinned = true;
+                once = true;
 
                 nowTime = Time.time;
             }
@@ -142,7 +155,7 @@ public class Customers : MonoBehaviour
                 trayScript.TrayGo();
                 CheckOrder();
 
-                if(rightOrder)
+                if(rightOrder && once)
                 {
                     rating += 0.5f;
 
@@ -150,8 +163,11 @@ public class Customers : MonoBehaviour
                     {
                         rating = 5;
                     }
+
+                    StarSystem(rating);
+                    once = false;
                 }
-                else if(!rightOrder)
+                else if(!rightOrder && once)
                 {
                     rating -= 0.5f;
 
@@ -159,6 +175,9 @@ public class Customers : MonoBehaviour
                     {
                         GameOver();
                     }
+
+                    StarSystem(rating);
+                    once = false;
                 }
 
                 cloneTray.transform.SetParent(currentCustomer.transform);
@@ -180,9 +199,8 @@ public class Customers : MonoBehaviour
             }
             else if(Time.time - nowTime > waitTime)
             {
-                Debug.Log("Angry");
-
                 rating -= 0.5f;
+                StarSystem(rating);
 
                 if(rating <= 0)
                 {
@@ -270,9 +288,39 @@ public class Customers : MonoBehaviour
         }
     }
 
+    void StarSystem(float starRating)
+    {
+        var whole = Math.Truncate(starRating);
+        var deci = starRating - Math.Truncate(starRating);
+
+        for(int i = 0; i < rawSlot.Length; i++)
+        {
+            if(i <= whole - 1)
+            {
+                rawSlot[i].GetComponent<RawImage>().texture = star.texture;
+            }
+            else if(i + 0.5f == starRating)
+            {
+                rawSlot[i].GetComponent<RawImage>().texture = halfStar.texture; 
+            }
+            else
+            {
+                rawSlot[i].GetComponent<RawImage>().texture = emptyStar.texture;
+            }
+        }
+    }
+
     void GameOver()
     {
+        StartCoroutine(Death());
+    }
 
+    IEnumerator Death()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(4.8f);
+
+        SceneManager.LoadScene(0);
     }
 
 }

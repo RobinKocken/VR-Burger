@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 3125788896687110947}
   - component: {fileID: 4515968708825504752}
   - component: {fileID: 9066554099190450782}
+  - component: {fileID: 6618617679090147331}
   m_Layer: 0
   m_Name: FullGrill 1
   m_TagString: Untagged
@@ -100,8 +101,8 @@ MonoBehaviour:
   timer: []
   num: 
   button: {fileID: 1274037838380248807}
-  cooked: {fileID: 2100000, guid: 6ff2d9c6092fea440ac83020bb050c78, type: 2}
-  overCooked: {fileID: 2100000, guid: c5ac123d0ae943c44b1cb96dc94e97f7, type: 2}
+  cooked: {fileID: 2100000, guid: b47ecf0ae64e42c469dc8f395614dc54, type: 2}
+  overCooked: {fileID: 2100000, guid: e43a9472eab1645419f4afe2a2527a4a, type: 2}
   cookedTime: 15
   overCookedTimer: 60
   degrees: 0
@@ -119,6 +120,102 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2472804, y: 0.97124606, z: 0.7389679}
   m_Center: {x: 0, y: 0.48562303, z: -0.011312485}
+--- !u!82 &6618617679090147331
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317903398299853209}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6c2d87cf8d9ffb949893a973541829ec, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2790183597543722482
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,15 +457,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: "0\xB0C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7cec793bd22a8cc458436b97a057d3f1, type: 2}
+  m_sharedMaterial: {fileID: 1923114271240742122, guid: 7cec793bd22a8cc458436b97a057d3f1,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190270
-  m_fontColor: {r: 0.74509805, g: 0, b: 0, a: 1}
+    rgba: 4278190246
+  m_fontColor: {r: 0.6509434, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -671,7 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

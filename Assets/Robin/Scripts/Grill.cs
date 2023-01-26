@@ -20,15 +20,27 @@ public class Grill : MonoBehaviour
     public int degrees;
     public TMP_Text degreesText;
 
+    bool once = true;
+
     void Update()
     {
         Temperature();
         Button();
+
+
+
+        
     }
     void Temperature()
     {
         if(degrees > 200 && degrees < 240)
         {
+            if(patties.Count == 1 && once)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+                once = false;
+            }
+
             for(int i = 0; i < timer.Count; i++)
             {
                 if(num[i] == 1)
@@ -52,6 +64,11 @@ public class Grill : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            gameObject.GetComponent<AudioSource>().Stop();
+            once = true;
         }
     }
 
@@ -91,6 +108,12 @@ public class Grill : MonoBehaviour
             {
                 patties.RemoveAt(i);
                 timer.RemoveAt(i);
+
+                if(patties.Count == 0)
+                {
+                    gameObject.GetComponent<AudioSource>().Stop();
+                    once = true;
+                }
 
                 return;
             }

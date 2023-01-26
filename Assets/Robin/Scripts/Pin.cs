@@ -10,6 +10,8 @@ public class Pin : MonoBehaviour
     {
         if(other.CompareTag("Pin"))
         {
+            gameObject.GetComponent<AudioSource>().Play();
+
             paid = true;
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4510387875269354230}
   - component: {fileID: 4510387875269354231}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: grilling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

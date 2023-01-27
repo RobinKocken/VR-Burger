@@ -8,6 +8,7 @@ public class Grill : MonoBehaviour
     public List<GameObject> patties;
     public List<float> timer;
     public List<int> num;
+    public List<ParticleSystem> par;
 
     public GameObject button;
 
@@ -22,14 +23,13 @@ public class Grill : MonoBehaviour
 
     bool once = true;
 
+    public ParticleSystem fat;
+    public ParticleSystem blackSmoke;
+
     void Update()
     {
         Temperature();
-        Button();
-
-
-
-        
+        Button();        
     }
     void Temperature()
     {
@@ -37,12 +37,16 @@ public class Grill : MonoBehaviour
         {
             if(patties.Count == 1 && once)
             {
-                gameObject.GetComponent<AudioSource>().Play();
                 once = false;
             }
 
             for(int i = 0; i < timer.Count; i++)
             {
+                if(!par[i].isPlaying)
+                {
+                    par[i].Play();
+                }
+
                 if(num[i] == 1)
                 {
                     if(Time.time - timer[i] > overCookedTimer)
@@ -51,6 +55,10 @@ public class Grill : MonoBehaviour
                         num[i] = 2;
 
                         patties[i].GetComponent<Item>().stage = 2;
+
+                        Destroy(par[i]);
+                        par[i] = Instantiate(blackSmoke, patties[i].transform.position, blackSmoke.transform.rotation);
+                        par[i].Play();
                     }
                 }
                 else if(num[i] == 0)
@@ -69,6 +77,11 @@ public class Grill : MonoBehaviour
         {
             gameObject.GetComponent<AudioSource>().Stop();
             once = true;
+
+            for(int i = 0; i < par.Count; i++)
+            {
+                par[i].Stop();
+            }
         }
     }
 
@@ -97,6 +110,8 @@ public class Grill : MonoBehaviour
             patties.Add(collision.gameObject);
             timer.Add(Time.time);
             num.Add(0);
+
+            par.Add(Instantiate(fat, collision.transform.position, fat.transform.rotation));
         }
     }
 
@@ -106,8 +121,12 @@ public class Grill : MonoBehaviour
         {
             if(collision.gameObject == patties[i])
             {
+                Destroy(par[i]);
+
                 patties.RemoveAt(i);
                 timer.RemoveAt(i);
+                num.RemoveAt(i);
+                par.RemoveAt(i);
 
                 if(patties.Count == 0)
                 {

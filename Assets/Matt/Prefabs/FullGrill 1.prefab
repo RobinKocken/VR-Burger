@@ -100,13 +100,17 @@ MonoBehaviour:
   patties: []
   timer: []
   num: 
+  par: []
   button: {fileID: 1274037838380248807}
   cooked: {fileID: 2100000, guid: b47ecf0ae64e42c469dc8f395614dc54, type: 2}
   overCooked: {fileID: 2100000, guid: e43a9472eab1645419f4afe2a2527a4a, type: 2}
-  cookedTime: 15
-  overCookedTimer: 60
+  cookedTime: 10
+  overCookedTimer: 120
   degrees: 0
   degreesText: {fileID: 6980202872538179705}
+  fat: {fileID: 4510387875269354230, guid: bc14938a88f18e548998329719982f03, type: 3}
+  blackSmoke: {fileID: 6210532661937791519, guid: 876a60ad3d43a2e4db0c09167830b4f0,
+    type: 3}
 --- !u!65 &9066554099190450782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,7 +144,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.8310273
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

@@ -10,10 +10,10 @@ public class LevelSelect : MonoBehaviour
     public float speed;
     public bool quit;
 
-    void Start()
-    {
-        
-    }
+    public ParticleSystem blood;
+
+    public float timing;
+    float waitTime;
 
     void Update()
     {
@@ -29,8 +29,14 @@ public class LevelSelect : MonoBehaviour
 
             if(Vector3.Distance(cam.position, fallpoint.position) < 0.1)
             {
-                if(!quit) MainLevel();
-                else if(quit) Quiting();
+                fallpoint.GetComponent<AudioSource>().Play();
+                blood.Play();
+
+                if(Time.time - waitTime > timing)
+                {
+                    if(!quit) MainLevel();
+                    else if(quit) Quiting();
+                }
             }
         }
     }
@@ -51,6 +57,8 @@ public class LevelSelect : MonoBehaviour
         {
             other.GetComponent<Rigidbody>().isKinematic = true;
             cam = other.GetComponent<Movement>().camOffset;
+
+            waitTime = Time.time;
         }
     }
 }

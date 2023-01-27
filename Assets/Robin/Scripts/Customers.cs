@@ -20,6 +20,7 @@ public class Customers : MonoBehaviour
     public GameObject pin;
     public GameObject card;
     public GameObject tray;
+    public GameObject order;
 
     GameObject spawnedCustomer;
     GameObject currentCustomer;
@@ -71,6 +72,7 @@ public class Customers : MonoBehaviour
         rating = 3;
 
         StarSystem(rating);
+        order.SetActive(false);
     }
 
     void Update()
@@ -136,6 +138,7 @@ public class Customers : MonoBehaviour
             if(fries == 0) burgerText.text = $"{food[orderNumber].burgerName}";
             else if(fries == 1) burgerText.text = $"{food[orderNumber].burgerName} \nFries";
 
+            order.SetActive(true);
 
             if(pinned)
             {
@@ -195,6 +198,8 @@ public class Customers : MonoBehaviour
                     activeCostumer = false;
                     pinScript.paid = false;
                     reveived = true;
+
+                    order.SetActive(false);
                 }
             }
             else if(Time.time - nowTime > waitTime)
@@ -215,6 +220,8 @@ public class Customers : MonoBehaviour
                 activeCostumer = false;
                 pinScript.paid = false;
                 reveived = true;
+
+                order.SetActive(false);
             }
         }
 
@@ -317,6 +324,8 @@ public class Customers : MonoBehaviour
 
     IEnumerator Death()
     {
+        yield return new WaitForSeconds(1);
+
         gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(4.8f);
 

@@ -667,7 +667,7 @@ MonoBehaviour:
   button: {fileID: 4010017389137847335}
   degrees: 0
   degreesText: {fileID: 4196547412135801663}
-  fried: 15
+  fried: 10
   itemNumber: 8
 --- !u!65 &6301076711326909002
 BoxCollider:
